@@ -22,7 +22,7 @@
   
   <!-- Listener 설정-->
   <listener>
-  	<listener-class>org.springframework.web.context.ContextLodderListener</listener-class>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   	<!-- 기본 파일명 applicationContext.xml -->
   </listener>
   
