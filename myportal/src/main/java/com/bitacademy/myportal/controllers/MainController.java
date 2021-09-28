@@ -7,11 +7,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
-	@RequestMapping({"/", "/home"})
+	@RequestMapping({"/", "/main"})
 	public ModelAndView home() {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("Msg", "Spring FrameWork MVC!");
+		mv.addObject("message", "Spring FrameWork MVC!");
 		mv.setViewName("/WEB-INF/views/home.jsp");
 		
 		return mv;

@@ -9,6 +9,6 @@
 <body>
 	<h1>MyPortal</h1>
 	<P>스프링 프레임워크 시작</P>
-	<p>${Msg}</p>
+	<p>${message}</p>
 </body>
 </html>
