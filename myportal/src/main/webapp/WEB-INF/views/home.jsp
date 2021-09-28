@@ -3,12 +3,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>MyPortal</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Template</title>
+<script language="javascript" 
+	type="text/javascript"
+ 	src="<%=request.getContextPath() %>/javascript/jquery/jquery-3.6.0.js"></script>
+ 	
+<link rel="stylesheet" 
+	href="<%=request.getContextPath() %>/css/main.css" />
 </head>
 <body>
-	<h1>MyPortal</h1>
-	<P>스프링 프레임워크 시작</P>
-	<p>${message}</p>
+	<div id="container">
+		<%-- import header.jsp here --%>
+		<jsp:include page="/WEB-INF/views/includes/header.jsp" />
+		
+		<%-- import navigation.jsp" --%>
+		<jsp:include page="/WEB-INF/views/includes/navigation.jsp" />
+		
+		<div id="wrapper">
+			<div id="content">
+				<!-- Contents 영역 -->
+				<h1>My Portal</h1>
+				<p>Spring Framework로 만든 홈페이지입니다.</p>
+			</div>
+		</div>
+		
+		<%-- import footer.jsp --%>
+		<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
+		<!--jsp:include page="/WEB-INF/views/includes/footer.jsp" /-->
+	</div>
 </body>
 </html>
