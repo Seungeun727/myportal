@@ -6,12 +6,12 @@
 <configuration>
 	<!-- 객체 별칭 -->
 	<typeAliases>
-		<!-- #해당 타입 속성값을 쓰려고 할 때 Configuration.xml에서 alias(별칭)을 불러주면 된다. -->
 		<typeAlias alias="guestbookVo" type="com.bitacademy.myportal.repository.GuestbookVo" />
+		<typeAlias alias="userVo" type="com.bitacademy.myportal.repository.UserVo" />
 	</typeAliases>
 	<!-- 매핑 설정 -->
-	<!-- # sql.selcetAll을 연결 안해줘서 오류남 -->
 	<mappers>
-		<mapper resource="mybatis/mappers/guestbook.xml"></mapper>
+		<mapper resource="mybatis/mappers/guestbook.xml" />
+		<mapper resource="mybatis/mappers/users.xml" />
 	</mappers>
 </configuration>
