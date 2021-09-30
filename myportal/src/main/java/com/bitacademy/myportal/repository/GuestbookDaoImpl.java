@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class GuestbookDaoImpl implements GuestbookDao {
-	// # @Autowired를 통해 sqlSession beans와 연결함.
 	@Autowired
 	SqlSession sqlSession;
 	
@@ -20,14 +19,14 @@ public class GuestbookDaoImpl implements GuestbookDao {
 
 	@Override
 	public int insert(GuestbookVo vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int insertedCount = sqlSession.insert("guestbook.insert", vo);
+		return insertedCount;
 	}
 
 	@Override
 	public int delete(GuestbookVo vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int deletedCount = sqlSession.delete("guestbook.delete", vo);
+		return deletedCount;
 	}
 
 }
