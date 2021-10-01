@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
 		// # 회원가입 정보를 전송했을 때 발생하는 예외 메시지 
 		try {
 			// # users.insert의 잘못은 회원가입 실패를 의미함.
-			// # users.insert를 처리하는 것은 UserServiceImpl가 처리할 수 없기에
+			// # users.insert를 처리하는 것은 UserServiceImpl이며
 			//	throws로 외부로 던져준다.
 			count = sqlSession.insert("users.insert", vo); // 예외 발생지점
 		} catch (Exception e) {
