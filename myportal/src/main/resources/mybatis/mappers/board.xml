@@ -15,4 +15,18 @@
 		#{userNo}
 	)
 	</insert>
+	
+	<select id="selectAll" resultType="boardVo">
+	<!-- 게시물 리스트 쿼리 -->
+	SELECT
+	    b.no,
+	    title,
+	    content,
+	    hit,
+	    reg_date as regDate,
+	    user_no as userNo,
+	    name as UserName
+	FROM board b, users u
+	WHERE b.user_no = u.no
+	</select>
 </mapper>
