@@ -41,13 +41,13 @@ public class MainController {
 	
 	// 컨트롤러의 예외 처리 v2
 	// # 예외를 집중적으로 처리할 수 있음
-	@ExceptionHandler(CustomException.class)
-	public String handleControllerException(CustomException e,
-			Model model) {
-		model.addAttribute("name", e.getClass().getSimpleName());
-		model.addAttribute("message", e.getMessage());
-		return "errors/exception";
-	}
+//	@ExceptionHandler(CustomException.class)
+//	public String handleControllerException(CustomException e,
+//			Model model) {
+//		model.addAttribute("name", e.getClass().getSimpleName());
+//		model.addAttribute("message", e.getMessage());
+//		return "errors/exception";
+//	}
 	
 	// 컨트롤러의 예외 처리 v1
 //	@ExceptionHandler(Exception.class)

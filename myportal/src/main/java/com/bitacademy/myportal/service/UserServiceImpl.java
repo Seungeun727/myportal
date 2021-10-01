@@ -3,6 +3,7 @@ package com.bitacademy.myportal.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bitacademy.myportal.exception.UserDaoException;
 import com.bitacademy.myportal.repository.UserDao;
 import com.bitacademy.myportal.repository.UserVo;
 
@@ -12,7 +13,8 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDaoImpl;
 	
 	@Override
-	public boolean join(UserVo vo) {
+	// # UserDaoException이 던져주면 UserController가 받음.
+	public boolean join(UserVo vo) throws UserDaoException {
 		int insertedCount = userDaoImpl.insert(vo);
 		return 1 == insertedCount;
 	}
