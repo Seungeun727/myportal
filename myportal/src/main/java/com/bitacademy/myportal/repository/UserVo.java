@@ -2,11 +2,24 @@ package com.bitacademy.myportal.repository;
 
 import java.util.Date;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 public class UserVo {
 	private Long no;	// Primary Key
 	// 로그인을 위한 정보
+	@NotEmpty	//	비어 있으면 안된다
+	@Length(min=2, max=8)
 	private String name;
+	@NotEmpty
+	@Email	//	형식이 Email인지 검증
 	private String email;
+	@NotEmpty
+	@Length(min=4, max=20)
+//	private String name;
+//	private String email;
 	private String password;
 	private String gender; // 성별 정보
 	private Date createAt;
