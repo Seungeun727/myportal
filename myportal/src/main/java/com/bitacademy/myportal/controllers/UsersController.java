@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,28 +22,39 @@ import com.bitacademy.myportal.service.UserService;
 @Controller
 @RequestMapping("/users")
 public class UsersController {
+	// 로거 세팅: org.slf4j.Logger 인터페이스
+	private static final Logger logger =
+			LoggerFactory.getLogger(UsersController.class);
 	@Autowired
 	private UserService userServiceImpl;
 	
 	@RequestMapping(value={"", "/", "/join"}, 
 			method=RequestMethod.GET)
 	public String joinForm() {
+	// 로그 레벨에 따라 메서드가 마련
+		logger.debug("회원가입폼");
 		return "users/joinform";
 	}
 
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String joinAction(@ModelAttribute UserVo userVo) {
-		System.out.println("가입 폼:" + userVo);
+		// System.out.println("가입 폼:" + userVo);
+		logger.debug("회원 가입 액션");
+		logger.debug("가입폼에서 전송된 데이터:" + userVo);
 		
 		boolean bSuccess = false;  // # 가입 실패
 		try { 
 			bSuccess = userServiceImpl.join(userVo);
 		} catch (UserDaoException e) {
-			System.err.println("에러상황의 UserVo:" + userVo);
+			// System.err.println("에러상황의 UserVo:" + userVo);
+			logger.error("에러 상황의 UserVo:" + userVo);
+			e.printStackTrace();
 		}
 		if (bSuccess) {	//	가입 성공
+			logger.debug("가입성공!");
 			return "redirect:/users/joinsuccess";
 		}
+		logger.debug("가입실패!");
 		return "redirect:/users/join";	//	실패시 가입폼으로
 	}
 	
@@ -63,11 +76,12 @@ public class UsersController {
 			String password,
 			HttpSession session
 			) {
-		System.out.println("email:" + email);
-		System.out.println("password:" + password);
+		// System.out.println("email:" + email);
+		// System.out.println("password:" + password);
 		
 		if (email.length() == 0 || password.length() == 0) {
-			System.err.println("로그인 불가!");
+			// System.err.println("로그인 불가!");
+			logger.error("로그인 불가!");
 			return "redirect:/users/login";
 		}
 		
@@ -75,7 +89,8 @@ public class UsersController {
 		
 		if (authUser != null) {
 			//	로그인 성공
-			System.out.println("로그인 성공:" + authUser);
+			// System.out.println("로그인 성공:" + authUser);
+			logger.debug("로그인 성공:" + authUser);
 			//	세션에 로그인 사용자 정보 저장
 			session.setAttribute("authUser", authUser);
 			return "redirect:/";
@@ -107,7 +122,6 @@ public class UsersController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("result", "success");
 		map.put("data", exists);
-		
 		return map;
-	}
+	}	
 }
